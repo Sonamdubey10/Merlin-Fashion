@@ -32,7 +32,7 @@ router.post('/createuser',[
     let user = await UserSchema.findOne({ email: req.body.email });
     if (user) {
       // return res.status(400).json({ error: "User with this email already exist" });
-      res.redirect("http://127.0.0.1:5500/index.html");
+      res.redirect("http://localhost:3000/");
     }
     const salt = await bcrypt.genSalt(10);
     // console.log(salt);
@@ -56,7 +56,8 @@ router.post('/createuser',[
     console.log(user);
     // res.json(user);
     if(authtoken){
-      res.redirect("http://127.0.0.1:5500/index.html");
+      res.redirect("http://localhost:3000/");
+
     }
     // res.json({ authtoken });
     
@@ -119,22 +120,4 @@ router.post('/login', [
 
 
 });
-
-// Get the user using: Post "/api/auth/getuser" . Login required
-router.post('/getuser', fetchuser, async (req, res) => {
-  try {
-   const userId = req.user.id;
-    const user = await UserSchema.findById(userId).select("-password");
-    res.send(user);
-    // res.json({ authtoken, user: data.user });
-    // res.send("success")
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Internal Server error 2");
-  }
-
-});
-
-
-
 module.exports = router;
