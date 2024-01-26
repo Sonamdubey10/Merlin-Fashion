@@ -90,7 +90,7 @@ button:hover{
     height: 460px;
     background:#eee;
     border-radius: 60% / 10%;
-    transform: translate(-180px);
+    transform: translate(-330px);
     transition: .8s ease-in-out;
 
  }
@@ -100,7 +100,7 @@ button:hover{
  }
 
  #chk:checked ~ .login{
-    transform: translateY(-500px);
+    transform: translateY(-330px);
 
  }
  #chk:checked ~ .login label{

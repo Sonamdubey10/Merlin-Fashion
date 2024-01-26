@@ -31,8 +31,7 @@ router.post('/createuser',[
     // let user = await User.findOne({ email: req.body.email });
     let user = await UserSchema.findOne({ email: req.body.email });
     if (user) {
-      // return res.status(400).json({ error: "User with this email already exist" });
-      res.redirect("http://localhost:3000/");
+      return res.status(400).json({ error: "User with this email already exist" });
     }
     const salt = await bcrypt.genSalt(10);
     // console.log(salt);
@@ -106,11 +105,10 @@ router.post('/login', [
     const authtoken = jwt.sign(data, JWT_SECRET);
     // console.log(jwtData);
     // res.json(user);
-    // if(authtoken){
-    //   res.redirect("http://localhost:3000/");
-    // }
-    // res.json({ authtoken });
-    res.json({ authtoken, user: data.user });
+    if(authtoken){
+      res.redirect("http://localhost:3000/");
+    }
+    res.json({ authtoken });
 
 
   } catch (error) {
